@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dock</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <input
+      id="search"
+      type="text"
+      placeholder="Search app, account or title…"
+      autocomplete="off"
+      autofocus
+    />
+    <div id="list" role="listbox" aria-label="App windows"></div>
+    <footer>
+      <button id="pause" type="button">Pause 1h</button>
+      <button id="tidy" type="button">Tidy</button>
+      <button id="settings" type="button">Settings</button>
+    </footer>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dock settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <h1>Dock</h1>
+
+    <section>
+      <h2>Apps and rules</h2>
+      <table id="builtin-rules"></table>
+
+      <h3>Custom rules</h3>
+      <table id="custom-rules"></table>
+      <form id="add-rule">
+        <input id="rule-name" placeholder="Name" required />
+        <input id="rule-match" placeholder="Match pattern, e.g. https://figma.com/*" required />
+        <select id="rule-target">
+          <option value="pwa">Open as PWA</option>
+          <option value="tab">Leave as tab</option>
+        </select>
+        <select id="rule-existing">
+          <option value="navigate">Navigate existing window</option>
+          <option value="focus">Focus only</option>
+        </select>
+        <button type="submit">Add rule</button>
+      </form>
+
+      <div class="row">
+        <button id="export">Export rules JSON</button>
+        <button id="import">Import rules JSON</button>
+        <input id="import-file" type="file" accept="application/json" hidden />
+      </div>
+    </section>
+
+    <section>
+      <h2>Accounts and colours</h2>
+      <table id="colours"></table>
+    </section>
+
+    <section>
+      <h2>Behaviour</h2>
+      <label><input type="checkbox" id="toasts" /> Show routing toasts</label>
+      <label><input type="checkbox" id="favicon" /> Coloured favicon overlay (adds a content script on rule domains)</label>
+      <label><input type="checkbox" id="shift-bypass" /> Shift-click bypasses routing</label>
+    </section>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>
