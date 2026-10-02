@@ -15,6 +15,16 @@ This copy was checked against what Chrome Web Store review actually looks at
 requirement) — see **Known limitations** at the bottom for what's still
 worth knowing before you submit.
 
+**Rejection history**: first submission was rejected for keyword spam
+(violation ref "Yellow Argon") — the description named the full app list
+("Gmail, Meet, Calendar, Drive, Docs, Sheets, Slides, or Chat") twice, once
+in the opening sentence and again in the feature bullets. Fixed by cutting
+it from the opening sentence (now says "Google Workspace") and keeping the
+explicit list in exactly one place, the "Built-in support for..." bullet,
+where naming the actual supported apps is genuinely informative rather than
+repeated. If a future edit adds app names back into the opening sentence or
+anywhere else, check it isn't duplicating the one list in the bullets.
+
 ## Store listing tab
 
 **Title**
@@ -32,9 +42,9 @@ Every web-app link, in the right window, for the right account. No stray tabs. N
 
 **Detailed description**
 ```
-Dock sends every Gmail, Meet, Calendar, Drive, Docs, Sheets, Slides, or Chat
-link to the window it actually belongs in — the installed PWA, for the right
-account — instead of leaving a stray browser tab.
+Dock sends every matching Google Workspace link to the window it actually
+belongs in — the installed PWA, for the right account — instead of leaving a
+stray browser tab.
 
 THE PROBLEM
 
@@ -58,9 +68,9 @@ WHAT DOCK DOES
   once.
 • Each login gets its own colour, shown as a toolbar badge and throughout the
   switcher.
-• Works out of the box for Gmail, Meet, Calendar, Drive, Docs, Sheets,
-  Slides, and Chat. Add your own app with a match pattern for anything else —
-  Figma, Notion, whatever you use as a PWA.
+• Built-in support for Gmail, Meet, Calendar, Drive, Docs, Sheets, Slides,
+  and Chat. Add your own app with a match pattern for anything else — Figma,
+  Notion, whatever you use as a PWA.
 • Hold Shift while clicking a Google Workspace link to open it as a normal
   tab instead, just that once.
 
@@ -87,6 +97,15 @@ Privacy policy: https://nandan.dev/dock/privacy.html
 3. `03-value-prop.png` — the before/after: stray tabs vs. one correctly-routed window.
 
 **Icon**: `icons/icon128.png` (the store wants a 128×128 PNG; this is the same one in the extension).
+
+**Support URL**
+```
+https://nandan.dev/dock/support.html
+```
+Real troubleshooting entries grounded in current known gaps (wrong-account
+routing, the Workspace-only Shift-bypass limit, etc.), not a generic
+template — and the only channel it points to is GitHub issues, since that's
+the only one that actually exists.
 
 ## Privacy practices tab
 
