@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dock — Link Router &amp; Switcher</title>
+    <meta
+      name="description"
+      content="Dock is a Chrome extension that sends every Gmail, Meet, Calendar and Workspace link to the right installed PWA window, for the right account. No stray tabs, no network requests."
+    />
+    <link rel="icon" href="images/icon32.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dock — Link Router & Switcher" />
+    <meta
+      property="og:description"
+      content="Every web-app link, in the right window, for the right account. No stray tabs. No network requests, ever."
+    />
+    <meta property="og:image" content="https://nandan.dev/dock/images/value-prop.png" />
+    <meta property="og:url" content="https://nandan.dev/dock" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site-header">
+        <a class="brand" href="#top">
+          <img src="images/icon128.png" alt="" />
+          <span>Dock</span>
+        </a>
+        <nav>
+          <a href="#features">Features</a>
+          <a href="#screenshots">Screenshots</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#install">Install</a>
+        </nav>
+        <a class="btn btn-ghost" href="https://github.com/sirius93/dock">GitHub</a>
+      </header>
+    </div>
+
+    <main>
+      <div class="wrap">
+        <section class="hero" id="top">
+          <h1>Every web-app link, in the right window, for the right account.</h1>
+          <p class="lede">
+            Clicking a Meet link in Gmail or Calendar usually opens a new
+            browser tab instead of the app you already have installed. Dock
+            fixes that — without replacing your browser, without an account,
+            without a single network request.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#install">Install from source</a>
+            <a class="btn btn-ghost" href="https://github.com/sirius93/dock">View on GitHub</a>
+          </div>
+          <p class="note">
+            Not on the Chrome Web Store yet — see
+            <a href="#install">Install</a> below.
+          </p>
+        </section>
+
+        <section id="screenshots">
+          <div class="section-head">
+            <h2>What it actually does</h2>
+            <p>Real screenshots of the real extension — not mockups.</p>
+          </div>
+
+          <div class="showcase-item">
+            <div class="showcase-copy">
+              <p class="eyebrow">The switcher</p>
+              <h3>Every app window, two keystrokes away</h3>
+              <p>
+                Ctrl/Cmd+Shift+Space opens a fuzzy-searchable popup grouped by
+                login, so you can see how many windows each account has open.
+                Live calls surface first. Close one window or an entire
+                account's windows with a click.
+              </p>
+            </div>
+            <img
+              src="images/switcher.png"
+              alt="Dock's switcher popup, listing app windows grouped by account with open-window counts and a live call badge"
+            />
+          </div>
+
+          <div class="showcase-item">
+            <div class="showcase-copy">
+              <p class="eyebrow">Rules &amp; settings</p>
+              <h3>Built-in rules for Workspace</h3>
+              <p>
+                Gmail, Meet, Calendar, Drive, Docs, Sheets, Slides and Chat
+                work immediately. Disable what you don't need, add any other
+                app with a match pattern, and give each login its own colour.
+              </p>
+            </div>
+            <img
+              src="images/settings.png"
+              alt="Dock's settings page, showing built-in and custom rules and account colours"
+            />
+          </div>
+
+          <div class="showcase-item">
+            <div class="showcase-copy">
+              <p class="eyebrow">Why it exists</p>
+              <h3>Stop hunting for the right tab</h3>
+              <p>
+                Dock sends every matching link straight into the window it
+                belongs to — or opens it if none is open yet. No stray tabs,
+                no guessing which window is which account.
+              </p>
+            </div>
+            <img
+              src="images/value-prop.png"
+              alt="Before and after: a cluster of stray browser tabs versus one clean, correctly-routed app window"
+            />
+          </div>
+        </section>
+
+        <section id="features">
+          <div class="section-head">
+            <h2>Features</h2>
+          </div>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="icon">↪</div>
+              <h3>Link routing</h3>
+              <p>
+                A matching link opens or focuses the existing PWA window
+                instead of a new tab. Hold Shift to bypass it for one click.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="icon">◎</div>
+              <h3>Account awareness</h3>
+              <p>
+                Routes to the window for the account the link actually names
+                — even when you switch accounts from inside the PWA itself.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="icon">⌘</div>
+              <h3>Switcher</h3>
+              <p>
+                Ctrl/Cmd+Shift+Space, type to search, Enter to focus. Grouped
+                by account, live calls first.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="icon">●</div>
+              <h3>Account colours</h3>
+              <p>
+                Each login gets an automatic, editable colour shown as a
+                toolbar badge and throughout the switcher.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="icon">＋</div>
+              <h3>Custom rules</h3>
+              <p>
+                Add Figma, Notion, or anything else you use as a PWA. Import
+                and export rules as JSON.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="icon">⇵</div>
+              <h3>Tidy</h3>
+              <p>
+                One click merges duplicate windows of an app into the one you
+                actually want and closes the rest.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="privacy" class="privacy">
+          <h2>No network requests. Ever.</h2>
+          <p>
+            Dock has no backend, no analytics, no account. Everything it
+            keeps — rules, account colours, the list of currently open app
+            windows — stays in Chrome's own local storage, on your device.
+            Nothing is synced, transmitted, or sent anywhere.
+          </p>
+          <a class="btn btn-ghost" href="privacy.html">Read the privacy policy</a>
+        </section>
+
+        <section id="install" class="install">
+          <div class="section-head">
+            <h2>Install from source</h2>
+            <p>Dock isn't on the Chrome Web Store yet, so this is the only way to run it today.</p>
+          </div>
+          <pre class="install-steps"><code>git clone https://github.com/sirius93/dock.git
+cd dock
+npm install
+npm run build</code></pre>
+          <ol>
+            <li>
+              Open <code>chrome://extensions</code>, enable Developer Mode,
+              click <strong>Load unpacked</strong>, and select the
+              <code>dist/</code> folder <code>npm run build</code> produced.
+            </li>
+            <li>
+              Install the Google apps you use as PWAs — the install icon in
+              Chrome's address bar, or <code>chrome://apps</code>.
+            </li>
+            <li>
+              Click a matching link and watch it land in the right window
+              instead of a new tab.
+            </li>
+          </ol>
+        </section>
+      </div>
+    </main>
+
+    <div class="wrap">
+      <footer>
+        <span>MIT License · © Nandan Kumar</span>
+        <div class="footer-links">
+          <a href="https://github.com/sirius93/dock">GitHub</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="https://github.com/sirius93/dock/blob/main/LICENSE">License</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,432 @@
+:root {
+  --ink: #0f2d2b;
+  --muted: #45534f;
+  --muted-2: #5f6368;
+  --accent: #0f766e;
+  --accent-dark: #0b5c56;
+  --accent-tint: #e6f6f4;
+  --border: #e3e8e6;
+  --bg: linear-gradient(135deg, #e8f6f4 0%, #ffffff 45%, #eef3ff 100%);
+  --radius: 12px;
+  --max: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: #fff;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--accent-dark);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  min-width: 0; /* grid items default to min-width:auto, which lets an image's intrinsic size blow out a 1fr track */
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.brand img {
+  width: 36px;
+  height: 36px;
+}
+
+.brand span {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.site-header nav a {
+  color: var(--muted-2);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.site-header nav a:hover {
+  color: var(--ink);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
+}
+
+.btn-ghost {
+  color: var(--ink);
+  border-color: var(--border);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+/* Hero */
+
+.hero {
+  background: var(--bg);
+  border-radius: 24px;
+  padding: 72px 40px;
+  text-align: center;
+  margin: 8px 0 72px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.12;
+  margin: 0 auto 18px;
+  max-width: 760px;
+}
+
+.hero p.lede {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+.hero .actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.hero .note {
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+.hero .note a {
+  color: var(--muted-2);
+  text-decoration: underline;
+}
+
+/* Sections */
+
+section {
+  margin: 88px 0;
+}
+
+.section-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.section-head h2 {
+  font-size: clamp(24px, 3vw, 32px);
+  margin: 0 0 10px;
+}
+
+.section-head p {
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Showcase */
+
+.showcase-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 72px;
+}
+
+.showcase-item > * {
+  min-width: 0;
+}
+
+.showcase-item:nth-child(even) .showcase-copy {
+  order: 2;
+}
+
+.showcase-copy .eyebrow {
+  color: var(--accent-dark);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.showcase-copy h3 {
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+
+.showcase-copy p {
+  color: var(--muted);
+}
+
+.showcase-item img {
+  border-radius: var(--radius);
+  box-shadow:
+    0 20px 40px -16px rgba(15, 45, 43, 0.22),
+    0 6px 14px -4px rgba(15, 45, 43, 0.1);
+  border: 1px solid var(--border);
+}
+
+/* Feature grid */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.feature-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.feature-card .icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--accent-tint);
+  color: var(--accent-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.feature-card h3 {
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Privacy */
+
+.privacy {
+  background: var(--accent-tint);
+  border-radius: 24px;
+  padding: 56px 40px;
+  text-align: center;
+}
+
+.privacy h2 {
+  margin-top: 0;
+}
+
+.privacy p {
+  max-width: 600px;
+  margin: 0 auto 24px;
+  color: var(--muted);
+}
+
+/* Install */
+
+.install ol {
+  max-width: 560px;
+  margin: 0 auto;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.install li {
+  margin-bottom: 10px;
+}
+
+.install code {
+  background: #f1f3f4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+pre.install-steps {
+  max-width: 560px;
+  margin: 24px auto 0;
+  background: #0f2d2b;
+  color: #e8f6f4;
+  padding: 20px 24px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  overflow-x: auto;
+  text-align: left;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* .install code styles inline <code> in prose; reset that inside the block
+   above, where the code IS the content, not a highlighted snippet of it. */
+pre.install-steps code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* Policy page */
+
+.policy {
+  max-width: 680px;
+  margin: 56px auto 96px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted-2);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--accent-dark);
+}
+
+.policy h1 {
+  font-size: clamp(28px, 4vw, 36px);
+  margin: 0 0 8px;
+}
+
+.policy .updated {
+  color: var(--muted-2);
+  font-size: 13px;
+  margin-bottom: 40px;
+}
+
+.policy h2 {
+  font-size: 19px;
+  margin: 40px 0 12px;
+}
+
+.policy p,
+.policy li {
+  color: var(--muted);
+}
+
+.policy ul {
+  padding-left: 20px;
+}
+
+.policy li {
+  margin-bottom: 8px;
+}
+
+.policy a {
+  color: var(--accent-dark);
+}
+
+.policy code {
+  background: #f1f3f4;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Footer */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--muted-2);
+  font-size: 13px;
+}
+
+footer a {
+  color: var(--muted-2);
+}
+
+footer .footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 760px) {
+  .site-header nav {
+    display: none;
+  }
+
+  .showcase-item,
+  .showcase-item:nth-child(even) .showcase-copy {
+    grid-template-columns: 1fr;
+    order: initial;
+  }
+
+  .showcase-item {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 48px 24px;
+  }
+}

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy — Dock</title>
+    <meta
+      name="description"
+      content="Dock's privacy policy: no network requests, no account, no server. Everything it stores stays in Chrome's local storage on your device."
+    />
+    <link rel="icon" href="images/icon32.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site-header">
+        <a class="brand" href="index.html#top">
+          <img src="images/icon128.png" alt="" />
+          <span>Dock</span>
+        </a>
+        <nav>
+          <a href="index.html#features">Features</a>
+          <a href="index.html#screenshots">Screenshots</a>
+          <a href="index.html#install">Install</a>
+        </nav>
+        <a class="btn btn-ghost" href="https://github.com/sirius93/dock">GitHub</a>
+      </header>
+    </div>
+
+    <main>
+      <div class="wrap">
+        <article class="policy">
+          <a class="back-link" href="index.html">← Back to Dock</a>
+          <h1>Privacy Policy</h1>
+          <p class="updated">Last updated: 2026-10-02</p>
+
+          <p>
+            Dock is a Chrome extension that routes web-app links to the right
+            installed PWA window and account. This page covers what it does
+            and doesn't do with your data. The same content is kept
+            version-controlled alongside the code at
+            <a href="https://github.com/sirius93/dock/blob/main/PRIVACY_POLICY.md"
+              >PRIVACY_POLICY.md</a
+            >, so its edit history is the history of this policy.
+          </p>
+
+          <h2>Dock makes no network requests</h2>
+          <p>
+            Dock does not contact any server, ever. It has no backend, no
+            analytics, no crash reporting, no update-check beyond Chrome's
+            own extension auto-update. Nothing Dock does ever leaves your
+            device.
+          </p>
+
+          <h2>What Dock stores, and where</h2>
+          <p>
+            All of it stays in <code>chrome.storage.local</code> — Chrome's
+            own local storage for the extension, on your device, never
+            synced to a Google account or anywhere else:
+          </p>
+          <ul>
+            <li>
+              <strong>Routing rules</strong> you've added or disabled (app
+              name, URL match pattern, target behaviour).
+            </li>
+            <li>
+              <strong>Account colours</strong>, keyed by the Google
+              <code>authuser</code> index (e.g. <code>0</code>,
+              <code>1</code>) — not by raw email, though Dock resolves that
+              index to the account's email for display in the extension's own
+              UI (the switcher and Settings page). That resolved email is
+              read from the page title of a tab you already have open (e.g.
+              Gmail's tab title includes it) — Dock doesn't ask you to type
+              it in or sign in anywhere.
+            </li>
+            <li>
+              <strong>A saved email-to-account-index mapping</strong>, if
+              you've configured one, used to resolve which account a link
+              belongs to when the URL itself doesn't say.
+            </li>
+            <li>
+              <strong>A short-lived, in-memory list of your currently open
+              app windows</strong> (which app, which account, the window/tab
+              id, the tab's title) — rebuilt from
+              <code>chrome.windows</code>/<code>chrome.tabs</code> each time
+              the extension's background worker starts, and gone when you
+              close Chrome. This is never written to disk.
+            </li>
+          </ul>
+          <p>
+            None of this is browsing history in the usual sense: Dock
+            doesn't log which sites you visit, doesn't keep a history of past
+            links, and doesn't retain anything about a tab once it's closed
+            and the window registry drops it.
+          </p>
+
+          <h2>What Dock reads, and why</h2>
+          <ul>
+            <li>
+              <strong>Tab URL and title</strong> (<code>tabs</code>
+              permission) — to check an incoming link against your routing
+              rules, and to show it in the switcher.
+            </li>
+            <li>
+              <strong>New-tab navigation events</strong>
+              (<code>webNavigation</code> permission) — to catch a link
+              opened in a new tab from another window before it finishes
+              loading.
+            </li>
+            <li>
+              <strong>Installed apps</strong> (<code>management</code>
+              permission) — to find the PWA a rule should route into, and
+              launch it.
+            </li>
+            <li>
+              <strong>Shift-click state on links</strong> — one small
+              content script runs on Google Workspace pages (and any domain
+              you add a custom rule for) that listens for a Shift+click on a
+              link and reports only that link's href and the fact Shift was
+              held, so routing can be skipped for that one click. It reads
+              nothing else from the page: no page content, no form data, no
+              cookies.
+            </li>
+          </ul>
+
+          <h2>Who can see this data</h2>
+          <p>
+            Nobody but you. It's stored locally, there's no account, no
+            sync, and no server for it to reach even if Dock tried to send
+            it somewhere.
+          </p>
+
+          <h2>Changes to this policy</h2>
+          <p>
+            If what Dock collects or does changes, this page changes with
+            it — it ships from the same repository as the code.
+          </p>
+
+          <h2>Contact</h2>
+          <p>
+            Open an issue at
+            <a href="https://github.com/sirius93/dock/issues"
+              >github.com/sirius93/dock/issues</a
+            >.
+          </p>
+        </article>
+      </div>
+    </main>
+
+    <div class="wrap">
+      <footer>
+        <span>MIT License · © Nandan Kumar</span>
+        <div class="footer-links">
+          <a href="https://github.com/sirius93/dock">GitHub</a>
+          <a href="index.html">Home</a>
+          <a href="https://github.com/sirius93/dock/blob/main/LICENSE">License</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
