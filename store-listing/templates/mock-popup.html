@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Standalone copy of popup.html's body with hardcoded sample data instead
+         of popup.js (which needs live chrome.* APIs this static page doesn't
+         have). Loaded in an iframe by the screenshot scenes so the real
+         popup.css applies with no collision with the scene page's own body. -->
+    <link rel="stylesheet" href="../../src/popup/popup.css" />
+  </head>
+  <body>
+    <input
+      id="search"
+      type="text"
+      placeholder="Search app, account or title…"
+      autocomplete="off"
+      readonly
+    />
+    <div id="list" role="listbox" aria-label="App windows">
+      <div class="account-header" role="presentation">
+        <span class="chip" style="background: #1a73e8"></span>
+        <span class="account-label">work@company.com</span>
+        <span class="count">3 open</span>
+        <button class="close-all" type="button">Close all</button>
+      </div>
+      <div class="row" tabindex="0" role="option">
+        <span class="app">Google Meet</span>
+        <span class="title">abc-defg-hij</span>
+        <span class="live">LIVE</span>
+        <button class="close-btn" type="button" aria-label="Close Google Meet">&#10005;</button>
+      </div>
+      <div class="row" tabindex="0" role="option">
+        <span class="app">Gmail</span>
+        <span class="title">Inbox (12)</span>
+        <button class="close-btn" type="button" aria-label="Close Gmail">&#10005;</button>
+      </div>
+      <div class="row" tabindex="0" role="option">
+        <span class="app">Calendar</span>
+        <span class="title">Today</span>
+        <button class="close-btn" type="button" aria-label="Close Calendar">&#10005;</button>
+      </div>
+
+      <div class="account-header" role="presentation">
+        <span class="chip" style="background: #9334e6"></span>
+        <span class="account-label">personal@gmail.com</span>
+        <span class="count">2 open</span>
+        <button class="close-all" type="button">Close all</button>
+      </div>
+      <div class="row" tabindex="0" role="option">
+        <span class="app">Gmail</span>
+        <span class="title">Inbox</span>
+        <button class="close-btn" type="button" aria-label="Close Gmail">&#10005;</button>
+      </div>
+      <div class="row" tabindex="0" role="option">
+        <span class="app">Drive</span>
+        <span class="title">My Drive</span>
+        <button class="close-btn" type="button" aria-label="Close Drive">&#10005;</button>
+      </div>
+    </div>
+    <footer>
+      <button type="button">Pause 1h</button>
+      <button type="button">Tidy</button>
+      <button type="button">Settings</button>
+    </footer>
+  </body>
+</html>

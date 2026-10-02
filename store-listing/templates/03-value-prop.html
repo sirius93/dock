@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="scene.css" />
+    <style>
+      .columns {
+        position: absolute;
+        top: 300px;
+        left: 96px;
+        right: 96px;
+        display: flex;
+        align-items: center;
+        gap: 48px;
+      }
+
+      .col {
+        flex: 1;
+        text-align: center;
+      }
+
+      .col-label {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .messy {
+        position: relative;
+        height: 180px;
+      }
+
+      .tab-chip {
+        position: absolute;
+        width: 150px;
+        padding: 10px 14px;
+        border-radius: 8px 8px 2px 2px;
+        background: #f1f3f4;
+        border: 1px solid #dcdfe2;
+        color: #5f6368;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: 0 6px 14px rgba(32, 33, 36, 0.12);
+      }
+
+      .clean-window {
+        margin: 0 auto;
+        width: 280px;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow:
+          0 20px 40px -16px rgba(15, 45, 43, 0.3),
+          0 6px 14px -4px rgba(15, 45, 43, 0.12);
+        overflow: hidden;
+        text-align: left;
+      }
+
+      .clean-window .bar {
+        height: 26px;
+        background: #e7e7ea;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 10px;
+      }
+
+      .clean-window .bar span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #cfcfd4;
+      }
+
+      .clean-window .body {
+        padding: 22px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .clean-window .chip {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #1a73e8;
+        flex-shrink: 0;
+      }
+
+      .clean-window .app-name {
+        font-weight: 700;
+        font-size: 15px;
+        color: #0f2d2b;
+      }
+
+      .clean-window .account {
+        font-size: 12px;
+        color: #5f6368;
+      }
+
+      .clean-window .check {
+        margin-left: auto;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #1e8e5a;
+        color: #fff;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .caption {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #5f6368;
+      }
+
+      .arrow {
+        font-size: 32px;
+        color: #c6cbd0;
+        flex: 0 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <div class="eyebrow">
+        <img src="../../icons/icon128.png" alt="" />
+        <span>DOCK</span>
+      </div>
+      <h1 class="headline">Stop hunting for the right tab</h1>
+      <p class="subcopy">
+        Dock sends every matching link straight into the window it belongs
+        to — or opens it if none is open yet. No stray tabs, no guessing
+        which window is which account.
+      </p>
+
+      <div class="columns">
+        <div class="col">
+          <div class="col-label" style="color: #b23a2e">WITHOUT DOCK</div>
+          <div class="messy">
+            <div class="tab-chip" style="top: 0px; left: 20px; transform: rotate(-6deg)">Gmail</div>
+            <div class="tab-chip" style="top: 10px; left: 90px; transform: rotate(4deg)">Google Meet</div>
+            <div class="tab-chip" style="top: 55px; left: 10px; transform: rotate(3deg)">Gmail</div>
+            <div class="tab-chip" style="top: 60px; left: 110px; transform: rotate(-3deg)">Calendar</div>
+            <div class="tab-chip" style="top: 105px; left: 45px; transform: rotate(-5deg)">Google Meet</div>
+            <div class="tab-chip" style="top: 110px; left: 150px; transform: rotate(5deg)">Gmail</div>
+          </div>
+          <p class="caption">6 stray tabs. No idea which is which.</p>
+        </div>
+
+        <div class="arrow">&#8594;</div>
+
+        <div class="col">
+          <div class="col-label" style="color: #1e8e5a">WITH DOCK</div>
+          <div class="messy" style="display: flex; align-items: center; justify-content: center">
+            <div class="clean-window">
+              <div class="bar"><span></span><span></span><span></span></div>
+              <div class="body">
+                <span class="chip"></span>
+                <div>
+                  <div class="app-name">Google Meet</div>
+                  <div class="account">work@company.com</div>
+                </div>
+                <span class="check">&#10003;</span>
+              </div>
+            </div>
+          </div>
+          <p class="caption">One window. Exactly the one you meant.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

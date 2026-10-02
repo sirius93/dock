@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Standalone copy of options.html with hardcoded sample data instead of
+         options.ts (which needs live chrome.storage). Loaded in an iframe by
+         the screenshot scenes so the real options.css applies cleanly. -->
+    <link rel="stylesheet" href="../../src/options/options.css" />
+    <style>
+      html,
+      body {
+        overflow: hidden;
+      }
+      body {
+        margin: 24px auto 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="brand">
+      <img src="../../icons/icon128.png" width="56" height="56" alt="Dock's otter-doctor mascot" />
+      <div>
+        <h1>Dock</h1>
+        <p class="tagline">Every link, the right window, the right account.</p>
+      </div>
+    </header>
+
+    <section>
+      <h2>Apps and rules</h2>
+      <table>
+        <tr><td>Gmail</td><td><input type="checkbox" checked /></td></tr>
+        <tr><td>Google Meet</td><td><input type="checkbox" checked /></td></tr>
+        <tr><td>Google Calendar</td><td><input type="checkbox" checked /></td></tr>
+        <tr><td>Google Drive</td><td><input type="checkbox" checked /></td></tr>
+        <tr><td>Google Docs</td><td><input type="checkbox" checked /></td></tr>
+        <tr><td>Google Sheets</td><td><input type="checkbox" checked /></td></tr>
+        <tr><td>Google Slides</td><td><input type="checkbox" checked /></td></tr>
+        <tr><td>Google Chat</td><td><input type="checkbox" /></td></tr>
+      </table>
+
+      <h3>Custom rules</h3>
+      <table>
+        <tr><td>Figma</td><td>https://figma.com/*</td><td><button type="button">Delete</button></td></tr>
+      </table>
+      <form>
+        <input placeholder="Name" />
+        <input placeholder="Match pattern, e.g. https://figma.com/*" />
+        <select><option>Open as PWA</option></select>
+        <select><option>Navigate existing window</option></select>
+        <button type="button">Add rule</button>
+      </form>
+
+      <div class="row">
+        <button type="button">Export rules JSON</button>
+        <button type="button">Import rules JSON</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Accounts and colours</h2>
+      <table>
+        <tr>
+          <td>work@company.com</td>
+          <td><input type="color" value="#1a73e8" /></td>
+        </tr>
+        <tr>
+          <td>personal@gmail.com</td>
+          <td><input type="color" value="#9334e6" /></td>
+        </tr>
+      </table>
+    </section>
+  </body>
+</html>

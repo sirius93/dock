@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 1280px;
+  height: 800px;
+  background: linear-gradient(135deg, #e8f6f4 0%, #ffffff 55%, #eef3ff 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  width: 1280px;
+  height: 800px;
+  padding: 80px 96px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.eyebrow img {
+  width: 36px;
+  height: 36px;
+}
+
+.eyebrow span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f2d2b;
+  letter-spacing: 0.2px;
+}
+
+.headline {
+  font-size: 42px;
+  font-weight: 700;
+  color: #0f2d2b;
+  margin: 0 0 14px;
+  max-width: 620px;
+  line-height: 1.15;
+}
+
+.subcopy {
+  font-size: 18px;
+  color: #45534f;
+  margin: 0 0 40px;
+  max-width: 540px;
+  line-height: 1.55;
+}
+
+.browser-chrome {
+  border-radius: 12px 12px 0 0;
+  background: #e7e7ea;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+}
+
+.browser-chrome span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cfcfd4;
+  display: inline-block;
+}
+
+.card-shadow {
+  box-shadow:
+    0 30px 60px -20px rgba(15, 45, 43, 0.35),
+    0 10px 20px -8px rgba(15, 45, 43, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
