@@ -8,7 +8,6 @@ export interface DockSettings {
   colours: Record<string, string>;
   pausedUntil: number | null; // epoch ms, or null = not paused
   toastsEnabled: boolean;
-  faviconOverlayEnabled: boolean;
   shiftBypassEnabled: boolean;
 }
 
@@ -19,7 +18,6 @@ const DEFAULTS: DockSettings = {
   colours: {},
   pausedUntil: null,
   toastsEnabled: true,
-  faviconOverlayEnabled: false,
   shiftBypassEnabled: true,
 };
 

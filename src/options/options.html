@@ -6,7 +6,13 @@
     <link rel="stylesheet" href="options.css" />
   </head>
   <body>
-    <h1>Dock</h1>
+    <header class="brand">
+      <img src="../icons/icon128.png" width="56" height="56" alt="Dock's otter-doctor mascot" />
+      <div>
+        <h1>Dock</h1>
+        <p class="tagline">Every link, the right window, the right account.</p>
+      </div>
+    </header>
 
     <section>
       <h2>Apps and rules</h2>
@@ -43,7 +49,6 @@
     <section>
       <h2>Behaviour</h2>
       <label><input type="checkbox" id="toasts" /> Show routing toasts</label>
-      <label><input type="checkbox" id="favicon" /> Coloured favicon overlay (adds a content script on rule domains)</label>
       <label><input type="checkbox" id="shift-bypass" /> Shift-click bypasses routing</label>
     </section>
 

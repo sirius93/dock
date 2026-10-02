@@ -111,9 +111,31 @@ document.getElementById("add-rule")?.addEventListener("submit", (e) => {
     existingWindow,
     enabled: true,
   };
-  void addCustomRule(rule);
-  (e.target as HTMLFormElement).reset();
+  const form = e.target as HTMLFormElement;
+  void addCustomRuleWithPermission(rule).then((added) => {
+    if (added) form.reset();
+  });
 });
+
+// A custom rule only matches tabs on domains Dock has host permission for.
+// *.google.com is granted upfront; anything else needs a runtime grant
+// (manifest.json declares a wildcard origin as optional for exactly this),
+// which must happen from this user gesture — the "Add rule" click.
+async function addCustomRuleWithPermission(rule: Rule): Promise<boolean> {
+  let granted: boolean;
+  try {
+    granted = await chrome.permissions.request({ origins: rule.match });
+  } catch {
+    alert(`"${rule.match[0]}" isn't a valid match pattern (e.g. https://figma.com/*).`);
+    return false;
+  }
+  if (!granted) {
+    alert(`Dock needs permission for ${rule.match[0]} to route its links. Rule not added.`);
+    return false;
+  }
+  await addCustomRule(rule);
+  return true;
+}
 
 async function addCustomRule(rule: Rule): Promise<void> {
   const customRules = [...settings.customRules, rule];
@@ -144,6 +166,12 @@ document.getElementById("import-file")?.addEventListener("change", async (e) => 
   const text = await file.text();
   try {
     const imported = JSON.parse(text) as Rule[];
+    const origins = imported.flatMap((r) => r.match);
+    const granted = await chrome.permissions.request({ origins });
+    if (!granted) {
+      alert("Dock needs permission for these rules' domains to route their links. Import cancelled.");
+      return;
+    }
     const byId = new Map(settings.customRules.map((r) => [r.id, r]));
     for (const rule of imported) byId.set(rule.id, rule);
     const customRules = [...byId.values()];
@@ -184,17 +212,12 @@ async function setColour(accountKey: string, colour: string): Promise<void> {
 
 function renderBehaviour(): void {
   const toasts = document.getElementById("toasts") as HTMLInputElement;
-  const favicon = document.getElementById("favicon") as HTMLInputElement;
   const shiftBypass = document.getElementById("shift-bypass") as HTMLInputElement;
 
   toasts.checked = settings.toastsEnabled;
-  favicon.checked = settings.faviconOverlayEnabled;
   shiftBypass.checked = settings.shiftBypassEnabled;
 
   toasts.addEventListener("change", () => void saveSettings({ toastsEnabled: toasts.checked }));
-  favicon.addEventListener("change", () =>
-    void saveSettings({ faviconOverlayEnabled: favicon.checked }),
-  );
   shiftBypass.addEventListener("change", () =>
     void saveSettings({ shiftBypassEnabled: shiftBypass.checked }),
   );

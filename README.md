@@ -79,16 +79,18 @@ rebuilds the JS on save.
 3. `Ctrl/Cmd+Shift+Space` opens the switcher: type to fuzzy-search app,
    account, or tab title; Enter focuses; `Ctrl+W` or the row's ✕ closes it.
 4. Add your own apps, edit account colours, and toggle behaviour (toasts,
-   Shift-bypass, the favicon overlay) from the extension's Settings page.
+   Shift-bypass) from the extension's Settings page.
 
 ## Privacy
 
 Dock keeps rules, account colours, and its in-memory window registry —
-nothing about your browsing history, and no network requests, ever. No
-content scripts run by default; the one optional exception (a coloured
-favicon overlay) only injects on domains you've added a rule for and reads
-nothing from the page. See the spec's **Privacy and security** section for
-the full detail.
+nothing about your browsing history, and no network requests, ever. One
+small content script runs on Google Workspace pages (and any domain you add
+a custom rule for) so Shift-click can bypass routing for that one click; it
+reads only the clicked link's href and the Shift key state, nothing else
+from the page. See [PRIVACY_POLICY.md](PRIVACY_POLICY.md) for the full
+detail, and the spec's **Privacy and security** section for the original
+design intent (the favicon overlay it describes isn't built yet).
 
 ## Architecture
 

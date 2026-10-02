@@ -16,9 +16,14 @@ let registryReady: Promise<void> = refreshRegistry();
 const DEBOUNCE_MS = 2000;
 const recentlyRouted = new Map<string, number>();
 
-// Content script reports shift-clicked hrefs here; skip routing them once.
+// Content script reports shift-clicked hrefs here; skip routing them once —
+// unless the user has turned the "Shift-click bypasses routing" setting off.
 const BYPASS_TTL_MS = 3000;
-const bypassUrls = new Map<string, number>();
+const shiftBypassUrls = new Map<string, number>();
+
+// Undo always reopens as a tab, regardless of the shift-bypass setting —
+// it's a distinct explicit action, not the shift-click feature.
+const forcedTabUrls = new Map<string, number>();
 
 const suggestedInstall = new Set<string>();
 
@@ -45,7 +50,7 @@ chrome.tabs.onRemoved.addListener((tabId) => registry.removeByTabId(tabId));
 
 chrome.runtime.onMessage.addListener((message: unknown) => {
   if (isBypassMessage(message)) {
-    bypassUrls.set(message.url, Date.now());
+    shiftBypassUrls.set(message.url, Date.now());
   }
 });
 
@@ -78,11 +83,17 @@ async function handleIncomingUrl(rawUrl: string, tabId: number): Promise<void> {
     return;
   }
 
-  if (isRecentlyRouted(url)) return;
-  if (consumeBypass(rawUrl) || consumeBypass(url)) return;
-
   const settings = await loadSettings();
   if (isPaused(settings)) return;
+
+  // Undo is always honoured. Shift-click bypass only when the user hasn't
+  // turned the setting off — but still consumed either way, so the map
+  // doesn't hold a stale entry for a click that's no longer actionable.
+  if (consumeFrom(forcedTabUrls, rawUrl) || consumeFrom(forcedTabUrls, url)) return;
+  const shiftBypassed = consumeFrom(shiftBypassUrls, rawUrl) || consumeFrom(shiftBypassUrls, url);
+  if (shiftBypassed && settings.shiftBypassEnabled) return;
+
+  if (isRecentlyRouted(url)) return;
 
   const rule = findMatchingRule(url, activeRules(settings));
   if (!rule) return;
@@ -123,14 +134,14 @@ async function handleIncomingUrl(rawUrl: string, tabId: number): Promise<void> {
       await chrome.tabs.update(action.tabId, { url: action.url });
       await closeStrayTab(tabId);
       await focusTabWindow(action.tabId);
-      await notifyRouted(rule.name, account, settings);
+      await notifyRouted(rule.name, account, settings, url);
       break;
     }
     case "focus": {
       await chrome.windows.update(action.windowId, { focused: true });
       await chrome.tabs.update(action.tabId, { active: true });
       await closeStrayTab(tabId);
-      await notifyRouted(rule.name, account, settings);
+      await notifyRouted(rule.name, account, settings, url);
       break;
     }
     case "open-new": {
@@ -139,7 +150,7 @@ async function handleIncomingUrl(rawUrl: string, tabId: number): Promise<void> {
       await closeStrayTab(tabId);
       await refreshRegistry();
       if (account) await persistColour(account, settings);
-      await notifyRouted(rule.name, account, settings);
+      await notifyRouted(rule.name, account, settings, url);
       break;
     }
     case "leave": {
@@ -190,10 +201,10 @@ function markRouted(url: string): void {
   }
 }
 
-function consumeBypass(url: string): boolean {
-  const seenAt = bypassUrls.get(url);
+function consumeFrom(map: Map<string, number>, url: string): boolean {
+  const seenAt = map.get(url);
   if (seenAt === undefined) return false;
-  bypassUrls.delete(url);
+  map.delete(url);
   return Date.now() - seenAt < BYPASS_TTL_MS;
 }
 
@@ -221,13 +232,20 @@ async function persistColour(account: string, settings: DockSettings): Promise<v
   await chrome.storage.local.set({ colours: { ...settings.colours, [account]: colour } });
 }
 
+// Undo reopens the routed URL as a plain tab; maps the notification back to
+// that URL since chrome.notifications carries no payload of its own.
+const undoUrls = new Map<string, string>();
+
 async function notifyRouted(
   appName: string,
   account: string | null,
   settings: DockSettings,
+  url: string,
 ): Promise<void> {
   if (!settings.toastsEnabled) return;
-  chrome.notifications.create({
+  const notificationId = `dock-route-${crypto.randomUUID()}`;
+  undoUrls.set(notificationId, url);
+  chrome.notifications.create(notificationId, {
     type: "basic",
     iconUrl: "icons/icon128.png",
     title: `Opened in ${appName}`,
@@ -235,6 +253,19 @@ async function notifyRouted(
     buttons: [{ title: "Undo" }],
   });
 }
+
+chrome.notifications.onButtonClicked.addListener((notificationId) => {
+  const url = undoUrls.get(notificationId);
+  if (!url) return;
+  undoUrls.delete(notificationId);
+  forcedTabUrls.set(url, Date.now()); // don't immediately re-route the tab we're about to reopen
+  void chrome.tabs.create({ url });
+  chrome.notifications.clear(notificationId);
+});
+
+chrome.notifications.onClosed.addListener((notificationId) => {
+  undoUrls.delete(notificationId);
+});
 
 function suggestInstallOnce(ruleId: string, ruleName: string): void {
   if (suggestedInstall.has(ruleId)) return;
