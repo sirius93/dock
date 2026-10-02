@@ -388,6 +388,59 @@ pre.install-steps code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
+.faq {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px 20px;
+  margin-bottom: 12px;
+}
+
+.faq summary {
+  padding: 16px 0;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::before {
+  content: "+";
+  display: inline-block;
+  width: 18px;
+  color: var(--accent-dark);
+  font-weight: 800;
+}
+
+.faq[open] summary::before {
+  content: "−";
+}
+
+.faq p {
+  margin: 0 0 16px 18px;
+  color: var(--muted);
+}
+
+.support-cta {
+  background: var(--accent-tint);
+  border-radius: 24px;
+  padding: 40px;
+  text-align: center;
+  margin-top: 56px;
+}
+
+.support-cta h2 {
+  margin-top: 0;
+}
+
+.support-cta p {
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto 20px;
+}
+
 /* Footer */
 
 footer {

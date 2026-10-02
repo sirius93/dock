@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Support — Dock</title>
+    <meta
+      name="description"
+      content="Troubleshooting and support for Dock, the Chrome extension that routes web-app links to the right installed PWA window and account."
+    />
+    <link rel="icon" href="images/icon32.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site-header">
+        <a class="brand" href="index.html#top">
+          <img src="images/icon128.png" alt="" />
+          <span>Dock</span>
+        </a>
+        <nav>
+          <a href="index.html#features">Features</a>
+          <a href="index.html#screenshots">Screenshots</a>
+          <a href="index.html#install">Install</a>
+        </nav>
+        <a class="btn btn-ghost" href="https://github.com/sirius93/dock">GitHub</a>
+      </header>
+    </div>
+
+    <main>
+      <div class="wrap">
+        <article class="policy">
+          <a class="back-link" href="index.html">← Back to Dock</a>
+          <h1>Support</h1>
+          <p class="updated">
+            Dock is young — the list below is the real, current gaps, not a
+            generic FAQ template.
+          </p>
+
+          <h2>Troubleshooting</h2>
+
+          <details class="faq">
+            <summary>A link isn't routing anywhere</summary>
+            <p>
+              Check three things, in order: the app is installed as a PWA
+              (not just open as a regular tab — Chrome's address bar shows an
+              install icon when one's available); the matching rule is
+              enabled in Settings → Apps and rules; and the link's domain
+              matches a rule's pattern exactly (built-in rules only cover
+              <code>*.google.com</code> paths, not every Google subdomain).
+            </p>
+          </details>
+
+          <details class="faq">
+            <summary>It opened a new window instead of using my existing one</summary>
+            <p>
+              Dock only tracks windows Chrome reports as app-type windows
+              (<code>windowType: "app"</code>) — a PWA you installed, not a
+              regular browser tab that happens to be on the same page. If
+              you're on mail.google.com in a normal tab rather than the
+              installed Gmail app, Dock won't see it as "your Gmail window."
+            </p>
+          </details>
+
+          <details class="faq">
+            <summary>It routed to the wrong Google account</summary>
+            <p>
+              Dock reads the account from the link itself — the
+              <code>authuser=</code> value or a <code>/u/N/</code> path
+              segment — in that order. If a link has neither (no account
+              hint at all), it falls back to whichever window for that app
+              you focused most recently. If that guess is consistently
+              wrong, the link you're clicking may just not carry an account
+              hint — that's a source-side thing, not something Dock can
+              recover on its own yet.
+            </p>
+          </details>
+
+          <details class="faq">
+            <summary>Switching accounts inside the PWA opened a duplicate window</summary>
+            <p>
+              This should reuse an already-open window for the account you
+              switched to, not duplicate it — if you're seeing a duplicate,
+              that's a real bug, not expected behaviour. Please
+              <a href="https://github.com/sirius93/dock/issues">file an issue</a>
+              with which apps/accounts were involved.
+            </p>
+          </details>
+
+          <details class="faq">
+            <summary>The Ctrl/Cmd+Shift+Space shortcut doesn't open the switcher</summary>
+            <p>
+              Another extension or the OS may already be using that
+              combination. Go to <code>chrome://extensions/shortcuts</code>
+              and rebind Dock's "Open the Dock switcher" command to whatever's
+              free.
+            </p>
+          </details>
+
+          <details class="faq">
+            <summary>Shift-click bypass isn't working on a site I added a custom rule for</summary>
+            <p>
+              This is a known limitation, not a bug: Shift-click bypass
+              currently only works on Google Workspace pages. Granting host
+              permission for a custom rule's domain lets Dock route links
+              there, but it doesn't extend the separate content script that
+              listens for Shift-click — that's still Workspace-only for now.
+            </p>
+          </details>
+
+          <details class="faq">
+            <summary>I don't see a favicon-overlay option anymore</summary>
+            <p>
+              It was removed. It shipped as a Settings checkbox that saved a
+              preference nothing actually read — dead UI — so it came out
+              rather than stay as a toggle that did nothing. It's still a
+              real idea from the original spec, just not built yet.
+            </p>
+          </details>
+
+          <h2>Reporting a bug</h2>
+          <p>
+            <a href="https://github.com/sirius93/dock/issues">Open an issue on GitHub</a>
+            — it's the only support channel there is right now, no email, no
+            chat. Include: your Chrome version, whether the app in question
+            is installed as a PWA, the URL pattern that misrouted (or didn't
+            route), what you expected instead, and — for anything
+            account-related — how many Google accounts you have signed in
+            and which one hit the issue.
+          </p>
+
+          <h2>Requesting a feature or a new built-in rule</h2>
+          <p>
+            Also a GitHub issue. If it's a rule for an app you use as a PWA
+            (something beyond Gmail, Meet, Calendar, Drive, Docs, Sheets,
+            Slides, and Chat), you don't have to wait on anyone — add it
+            yourself from Settings → Apps and rules with a match pattern, no
+            code required.
+          </p>
+        </article>
+
+        <div class="support-cta">
+          <h2>Still stuck?</h2>
+          <p>
+            Open an issue with as much detail as you can — logs, Chrome
+            version, what you clicked and what happened instead.
+          </p>
+          <a class="btn btn-primary" href="https://github.com/sirius93/dock/issues">Open an issue</a>
+        </div>
+      </div>
+    </main>
+
+    <div class="wrap">
+      <footer>
+        <span>MIT License · © Nandan Kumar</span>
+        <div class="footer-links">
+          <a href="https://github.com/sirius93/dock">GitHub</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="index.html">Home</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
