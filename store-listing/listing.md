@@ -15,15 +15,26 @@ This copy was checked against what Chrome Web Store review actually looks at
 requirement) — see **Known limitations** at the bottom for what's still
 worth knowing before you submit.
 
-**Rejection history**: first submission was rejected for keyword spam
-(violation ref "Yellow Argon") — the description named the full app list
-("Gmail, Meet, Calendar, Drive, Docs, Sheets, Slides, or Chat") twice, once
-in the opening sentence and again in the feature bullets. Fixed by cutting
-it from the opening sentence (now says "Google Workspace") and keeping the
-explicit list in exactly one place, the "Built-in support for..." bullet,
-where naming the actual supported apps is genuinely informative rather than
-repeated. If a future edit adds app names back into the opening sentence or
-anywhere else, check it isn't duplicating the one list in the bullets.
+**Rejection history**: rejected twice for keyword spam, same violation ref
+("Yellow Argon") both times.
+
+1. First pass: the description named the full app list ("Gmail, Meet,
+   Calendar, Drive, Docs, Sheets, Slides, or Chat") twice — once in the
+   opening sentence, again in the feature bullets. Fix: cut it from the
+   opening sentence, kept it once in the bullets.
+2. Second pass: **rejected again, flagging that same single remaining
+   list.** So the trigger isn't duplication — a single comma-separated run
+   of 8 trademarked product names reads as a keyword list to Google's
+   reviewer regardless of how many times it appears or how naturally it's
+   worded into a sentence.
+
+Fixed by removing every enumerated app-name list from the description —
+not just deduplicating. "Google Workspace" now appears as a single umbrella
+term (twice, each a plain sentence, never followed by a comma-list), and
+the one place a reader actually needs the full list — Settings — is shown
+in the screenshots instead of spelled out in text. If you're tempted to add
+`Gmail, Meet, Calendar, ...` back into the description for clarity, don't —
+point to the screenshot or to Settings instead.
 
 ## Store listing tab
 
@@ -42,16 +53,17 @@ Every web-app link, in the right window, for the right account. No stray tabs. N
 
 **Detailed description**
 ```
-Dock sends every matching Google Workspace link to the window it actually
-belongs in — the installed PWA, for the right account — instead of leaving a
-stray browser tab.
+Dock sends every matching work-app link to the window it actually belongs
+in — the installed PWA, for the right account — instead of leaving a stray
+browser tab.
 
 THE PROBLEM
 
-Clicking a Meet link in Gmail or Calendar usually opens a new browser tab
-instead of the Meet app you already have installed. After a day of that
-you've got duplicate Gmail tabs, stray Meet tabs, and PWA windows you can't
-tell apart. It gets worse the moment you have more than one Google account.
+Clicking a video-call link from your inbox or calendar usually opens a new
+browser tab instead of the app you already have installed. After a day of
+that you've got duplicate inbox tabs, stray call tabs, and app windows you
+can't tell apart. It gets worse the moment you have more than one account
+signed in.
 
 WHAT DOCK DOES
 
@@ -68,11 +80,11 @@ WHAT DOCK DOES
   once.
 • Each login gets its own colour, shown as a toolbar badge and throughout the
   switcher.
-• Built-in support for Gmail, Meet, Calendar, Drive, Docs, Sheets, Slides,
-  and Chat. Add your own app with a match pattern for anything else — Figma,
-  Notion, whatever you use as a PWA.
-• Hold Shift while clicking a Google Workspace link to open it as a normal
-  tab instead, just that once.
+• Built-in rules cover the Google Workspace apps you already use — see the
+  full list in Settings. Add your own for anything else: Figma, Notion,
+  whatever you use as a PWA.
+• Hold Shift while clicking a link on a supported page to open it as a
+  normal tab instead, just that once.
 
 PRIVACY
 
@@ -127,8 +139,8 @@ from posting a policy; it just means the policy is short.
 **Single purpose description**
 ```
 Routes links to Google Workspace (and user-added) web apps into the correct
-already-installed PWA window for the correct Google account, instead of
-opening a new browser tab.
+already-installed PWA window for the correct account, instead of opening a
+new browser tab.
 ```
 
 **Permission justifications**
@@ -140,7 +152,7 @@ opening a new browser tab.
 | `management` | Detects which Google Workspace (or user-added) apps are installed as PWAs (`chrome.management.getAll`) and launches the correct one (`chrome.management.launchApp`) when no matching window is already open. |
 | `storage` | Saves the user's rules, account colours, and settings locally via `chrome.storage.local`. Nothing is synced or sent off-device. |
 | `notifications` | Shows the "Opened in \<app\>" toast after routing a link, and the one-time "Install this app?" prompt when a matching link arrives but the PWA isn't installed yet. |
-| Host permission `*://*.google.com/*` | Lets the built-in rules (Gmail, Meet, Calendar, Drive, Docs, Sheets, Slides, Chat) match and act on Google Workspace URLs without a runtime prompt, since every user gets these by default. |
+| Host permission `*://*.google.com/*` | Lets the built-in rules match and act on Google Workspace URLs without a runtime prompt, since every user gets these rules by default — see Settings for the full list of covered apps. |
 | Optional host permission `*://*/*` | Requested at runtime, only when a user adds a custom rule for a domain Dock doesn't already have access to (e.g. figma.com) — never granted upfront. |
 
 **Data usage disclosures** (the "Does your extension collect or use..." checklist)
