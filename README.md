@@ -5,6 +5,7 @@
 
   **Every web-app link, in the right window, for the right account.**
 
+  [![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Add%20to%20Chrome-4285F4)](https://chromewebstore.google.com/detail/bplpcnlojimklccelhknjjipbjhaflgi)
   ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
   ![Manifest V3](https://img.shields.io/badge/manifest-v3-informational)
 </div>
@@ -55,9 +56,13 @@ tested. A few things the spec calls out as "spike first" are implemented but
 what's unverified and how to help. Not built yet: onboarding screens, the
 favicon overlay, end-to-end tests.
 
-## Install (from source)
+## Install
 
-Dock isn't on the Chrome Web Store yet.
+**[Add to Chrome](https://chromewebstore.google.com/detail/bplpcnlojimklccelhknjjipbjhaflgi)**
+— Dock is live on the Chrome Web Store.
+
+Prefer to build it yourself, or want the current `main` instead of the
+published version?
 
 ```
 git clone https://github.com/sirius93/dock.git

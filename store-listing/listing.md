@@ -1,5 +1,7 @@
 # Chrome Web Store listing content
 
+**Live**: https://chromewebstore.google.com/detail/bplpcnlojimklccelhknjjipbjhaflgi
+
 Draft copy for the Chrome Web Store Developer Dashboard listing. This is a
 Chrome extension, so it publishes through the **Chrome Web Store**
 (chrome.google.com/webstore/devconsole), not the Google Play Store — Play is
