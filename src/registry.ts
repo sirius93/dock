@@ -6,16 +6,33 @@ import { extractAccountEmailFromTitle, extractAccountKey } from "./accounts";
 // "in call" title Meet sets. Cheap alternative to a content script (spike risk #3).
 const MEET_CALL_TITLE_RE = /Meet( -|:)|meet\.google\.com.*\|/i;
 
-/** In-memory registry: keyed by "app:account". Rebuilt whenever the service worker wakes. */
+/**
+ * In-memory registry of tracked app windows, keyed by windowId — one entry
+ * per actual Chrome window, never collapsed. (A previous version keyed by
+ * "app:account", which meant two windows of the same app signed into the
+ * same account silently overwrote each other during rebuild() — the
+ * switcher could never show more than one window per app+account, even
+ * though that's exactly the duplicate case it exists to show you so you can
+ * Tidy it.) Rebuilt whenever the service worker wakes.
+ */
 export class Registry {
-  private windows = new Map<string, AppWindow>();
+  private windows = new Map<number, AppWindow>();
 
+  /** The canonical window for an app+account — most recently focused, if more than one is open. */
   get(app: string, account: string | null): AppWindow | undefined {
-    return this.windows.get(key(app, account));
+    let best: AppWindow | undefined;
+    for (const w of this.windows.values()) {
+      if (w.app !== app || w.account !== account) continue;
+      if (!best || w.lastFocused > best.lastFocused) best = w;
+    }
+    return best;
   }
 
   getByTabId(tabId: number): AppWindow | undefined {
-    return this.all().find((w) => w.tabId === tabId);
+    for (const w of this.windows.values()) {
+      if (w.tabId === tabId) return w;
+    }
+    return undefined;
   }
 
   /** Number of tracked app windows currently signed in as `account`. */
@@ -38,7 +55,7 @@ export class Registry {
   }
 
   set(win: AppWindow): void {
-    this.windows.set(key(win.app, win.account), win);
+    this.windows.set(win.windowId, win);
   }
 
   removeByTabId(tabId: number): void {
@@ -47,15 +64,13 @@ export class Registry {
     }
   }
 
-  /** Re-key a tracked window after it navigates itself to a new URL/account in place. */
+  /** Re-tag a tracked window after it navigates itself to a new URL/account in place. */
   retag(tabId: number, account: string | null, url: string, title?: string): void {
     const win = this.getByTabId(tabId);
     if (!win) return;
-    this.windows.delete(key(win.app, win.account));
     win.account = account;
     win.url = url;
     if (title !== undefined) win.title = title;
-    this.windows.set(key(win.app, account), win);
   }
 
   clear(): void {
@@ -97,8 +112,4 @@ function accountForTab(
   if (fromUrl !== null) return fromUrl;
   const email = extractAccountEmailFromTitle(title);
   return email ? (emailToIndex[email] ?? email) : null;
-}
-
-function key(app: string, account: string | null): string {
-  return `${app}:${account ?? ""}`;
 }
