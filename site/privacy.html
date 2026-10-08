@@ -6,9 +6,36 @@
     <title>Privacy Policy — Dock</title>
     <meta
       name="description"
-      content="Dock's privacy policy: no network requests, no account, no server. Everything it stores stays in Chrome's local storage on your device."
+      content="Dock's privacy policy: the extension makes no network requests, no account, no server. This website uses Google Analytics and Hotjar."
     />
     <link rel="icon" href="images/icon32.png" />
+
+    <!-- Hotjar Tracking Code for https://nandan.dev -->
+    <script>
+      (function (h, o, t, j, a, r) {
+        h.hj =
+          h.hj ||
+          function () {
+            (h.hj.q = h.hj.q || []).push(arguments);
+          };
+        h._hjSettings = { hjid: 3062569, hjsv: 6 };
+        a = o.getElementsByTagName("head")[0];
+        r = o.createElement("script");
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZLTZWK8F2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-4ZLTZWK8F2");
+    </script>
+
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -36,7 +63,7 @@
         <article class="policy">
           <a class="back-link" href="index.html">← Back to Dock</a>
           <h1>Privacy Policy</h1>
-          <p class="updated">Last updated: 2026-10-02</p>
+          <p class="updated">Last updated: 2026-10-08</p>
 
           <p>
             Dock is a Chrome extension that routes web-app links to the right
@@ -48,12 +75,37 @@
             >, so its edit history is the history of this policy.
           </p>
 
-          <h2>Dock makes no network requests</h2>
+          <p>
+            This covers two different things, with two different privacy
+            stories — read on for which applies where:
+          </p>
+          <ul>
+            <li>
+              <strong>The extension</strong> (everything below this website
+              section) makes no network requests at all.
+            </li>
+            <li>
+              <strong>This website</strong> (nandan.dev/dock — the page
+              you're reading right now, not the extension) uses Google
+              Analytics and Hotjar to see how many people visit and how they
+              use it: page views, approximate location from IP, device/browser
+              type, and session recordings/heatmaps of on-page behaviour.
+              That's standard website analytics, unrelated to anything the
+              installed extension does — the extension itself never loads
+              these or any other script from a server. See
+              <a href="https://www.google.com/policies/privacy/">Google's</a>
+              and
+              <a href="https://www.hotjar.com/legal/policies/privacy/">Hotjar's</a>
+              privacy policies for what they each collect.
+            </li>
+          </ul>
+
+          <h2>The extension makes no network requests</h2>
           <p>
             Dock does not contact any server, ever. It has no backend, no
             analytics, no crash reporting, no update-check beyond Chrome's
-            own extension auto-update. Nothing Dock does ever leaves your
-            device.
+            own extension auto-update. Nothing the extension does ever
+            leaves your device.
           </p>
 
           <h2>What Dock stores, and where</h2>

@@ -1,16 +1,30 @@
 # Dock Privacy Policy
 
-_Last updated: 2026-10-02_
+_Last updated: 2026-10-08_
 
 Dock is a Chrome extension that routes web-app links to the right installed
 PWA window and account. This policy covers what it does and doesn't do with
 your data.
 
-## Dock makes no network requests
+This covers two different things, with two different privacy stories:
+
+- **The extension** (everything below the next section) makes no network
+  requests at all.
+- **The website** (nandan.dev/dock — not the extension) uses Google
+  Analytics and Hotjar to see how many people visit and how they use it:
+  page views, approximate location from IP, device/browser type, and
+  session recordings/heatmaps of on-page behaviour. That's standard website
+  analytics, unrelated to anything the installed extension does — the
+  extension itself never loads these or any other script from a server.
+  See [Google's](https://www.google.com/policies/privacy/) and
+  [Hotjar's](https://www.hotjar.com/legal/policies/privacy/) privacy
+  policies for what they each collect.
+
+## The extension makes no network requests
 
 Dock does not contact any server, ever. It has no backend, no analytics, no
 crash reporting, no update-check beyond Chrome's own extension auto-update.
-Nothing Dock does ever leaves your device.
+Nothing the extension does ever leaves your device.
 
 ## What Dock stores, and where
 
