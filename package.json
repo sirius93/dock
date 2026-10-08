@@ -1,6 +1,6 @@
 {
   "name": "dock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Chrome extension: routes web-app links to the right installed PWA window and account.",
   "private": true,
   "type": "module",

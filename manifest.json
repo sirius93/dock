@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Dock — Link Router & Switcher",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sends web-app links to the right installed PWA window and account. No network requests, nothing leaves the device.",
   "homepage_url": "https://github.com/sirius93/dock",
   "icons": {
